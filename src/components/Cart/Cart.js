@@ -1,16 +1,16 @@
-// import Button from '@restart/ui/esm/Button';
 import React from 'react';
 import { Card, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './Service.css';
+import './Cart.css'
 
-const Service = (props) => {
-    const { _id, name, img, price, description } = props.service;
-    const { handleCart } = props;
+const Cart = (props) => {
+    const { name, img, _id, description, price } = props.cart;
     const { handleDelete } = props;
     return (
+
+
         <Col>
-            <Card className='card-container mx-auto shadow p-3 mb-5 bg-body rounded'>
+            <Card className='card-cart mx-auto shadow p-3 mb-5 bg-body rounded'>
                 <div className='mx-auto'>
                     <Card.Img className='image' variant="top" src={img} />
                 </div>
@@ -21,15 +21,16 @@ const Service = (props) => {
                     <h5>
                         price:{price}$
                     </h5>
-                    <Link to={`/carts`}>
-                        <button onClick={() => handleCart(props.service)} className="button btn btn-warning">Booking {name.toLowerCase()}</button>
+                    <Link to='/orders'>
+                        <button className="button btn btn-warning">Purchase {name.toLowerCase()}</button>
                     </Link>
-
-                    <button className="button btn btn-warning" onClick={() => handleDelete(_id)}>Delete</button>
+                    <br />
+                    <button onClick={() => handleDelete(_id)} className='button btn btn-primary'>Delete</button>
                 </Card.Body>
             </Card>
         </Col>
+
     );
 };
 
-export default Service;
+export default Cart;

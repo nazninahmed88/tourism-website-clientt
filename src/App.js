@@ -1,19 +1,20 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
-import AboutUs from './components/AboutUs/AboutUs';
-import Booking from './components/Booking/Booking';
-
+import About from './components/About/About';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
-import Hotels from './components/Hotels/Hotels';
 import Login from './components/Login/Login';
 import NotFound from './components/NotFound/NotFound';
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import Register from './components/Register/Register';
-import Service from './components/Service/Service';
 import Services from './components/Services/Services';
 import AuthProvider from './context/AuthProvider';
+import Register from './components/Register/Register';
+import AddService from './components/Add Service/AddService';
+import Booking from './components/Booking/Booking/Booking';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Orders from './components/Orders/Orders';
+import ManageOrder from './components/ManageOrder/ManageOrder';
+import Carts from './components/Carts/Carts';
 
 function App() {
   return (
@@ -25,30 +26,36 @@ function App() {
             <Route exact path='/'>
               <Home></Home>
             </Route>
+            <PrivateRoute path="/booking/:serviceId">
+              <Booking></Booking>
+            </PrivateRoute>
             <Route path='/home'>
               <Home></Home>
             </Route>
-            <Route path='/services'>
-             <Services></Services>
+            <PrivateRoute path='/carts'>
+              <Carts></Carts>
+            </PrivateRoute>
+            <PrivateRoute path='/services'>
+              <Services></Services>
+            </PrivateRoute>
+            <PrivateRoute path='/manageOrder'>
+              <ManageOrder></ManageOrder>
+            </PrivateRoute>
+            <PrivateRoute path='/orders'>
+              <Orders></Orders>
+            </PrivateRoute>
+            <Route path='/about'>
+              <About></About>
             </Route>
-            <PrivateRoute path='/service/:serviceId'>
-              <Service></Service>
-            </PrivateRoute>
-            <PrivateRoute path='/booking'>
-             <Booking></Booking>
-            </PrivateRoute>
             <Route path='/login'>
               <Login></Login>
-            </Route>
-            <Route path='/about'>
-              <AboutUs></AboutUs>
-            </Route>
-            <Route path='/hotels'>
-             <Hotels></Hotels>
             </Route>
             <Route path='/register'>
               <Register></Register>
             </Route>
+            <PrivateRoute path='/addservice'>
+              <AddService></AddService>
+            </PrivateRoute>
             <Route path='*'>
               <NotFound></NotFound>
             </Route>
@@ -56,7 +63,6 @@ function App() {
           <Footer></Footer>
         </BrowserRouter>
       </AuthProvider>
-
     </div>
   );
 }

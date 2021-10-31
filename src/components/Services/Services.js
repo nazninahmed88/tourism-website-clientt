@@ -1,23 +1,60 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Row } from 'react-bootstrap';
 
-import Servicecard from '../Servicecard/Servicecard';
+import Service from '../Service/Service';
+
 
 const Services = () => {
     const [services, setServices] = useState([]);
+
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        const url = 'http://localhost:5000/services';
+        fetch(url)
             .then(res => res.json())
-            .then(data => setServices(data))
+            .then(data => setServices(data));
     }, [])
-    return (
-        <div>
-             <h1 className='text-center'>Services</h1>
-            <hr />
-            <div className="row row-cols-1 row-cols-md-3 g-5 ms-5">
-                {
-                    services.map(service => <Servicecard key={service._id} service={service}></Servicecard>)
+    const handleCart = cart => {
+        axios.post('http://localhost:5000/cart', cart)
+            .then(res => {
+                alert('Added Successfully');
+            })
+    }
+    const handleDelete = id => {
+        // console.log(id);
+        const url = `http://localhost:5000/services/${id}`;
+        fetch(url, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                if (data.deletedCount) {
+                    alert('Successfully deleted');
+                    const remaining = services.filter(service => service._id !== id);
+                    setServices(remaining);
                 }
 
+            })
+    }
+    return (
+        <div>
+            <div>
+                <div className=' pt-5'>
+                    <h1 className='text-center'> Services</h1>
+
+                    <hr />
+                    <Row xs={1} md={3} className=" row row-cols-1 row-cols-md-3 g-6">
+                        {
+                            services.map(service => <Service
+                                key={service._id}
+                                service={service}
+                                handleCart={handleCart}
+                                handleDelete={handleDelete}
+                            ></Service>)
+                        }
+                    </Row>
+                </div>
             </div>
         </div>
     );

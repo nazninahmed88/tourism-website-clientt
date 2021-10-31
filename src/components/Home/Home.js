@@ -1,42 +1,20 @@
-// import React, { useEffect, useState } from 'react';
-// import Homecard from '../Homecard/Homecard';
-import Hotels from '../Hotels/Hotels';
+
+import Banner from '../Banner/Banner';
+import HotelServices from '../HotelServices/HotelServices';
 import Services from '../Services/Services';
-import './Home.css'
+
 
 const Home = () => {
-   
+
+
     return (
         <div>
-            <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <img src="./banner1.jpg" className="d-block w-75 mx-auto" alt="..."></img>
-                    </div>
-                    <div className="carousel-item">
-                        <img src="./banner2.jpg" className="d-block w-75 mx-auto" alt="..."></img>
-                    </div>
-                    <div className="carousel-item">
-                        <img src="./banner3.jpg" className="d-block w-75 mx-auto" alt="..."></img>
-                    </div>
-                </div>
-                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Previous</span>
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Next</span>
-                </button>
-            </div>
-            <hr />
+            <Banner></Banner>
+           
             <Services></Services>
             <hr />
-            <Hotels></Hotels>
-          
-           <br />
-        
-
+            <HotelServices></HotelServices>
+        <hr />
 
             <div id="contact" className="form p-5">
                 <h1>Contact Us</h1>
@@ -53,8 +31,7 @@ const Home = () => {
                 <input className="button2" type="reset" value="Reset" />
             </div>
 
-
-
+        <hr />
         </div>
     );
 };
